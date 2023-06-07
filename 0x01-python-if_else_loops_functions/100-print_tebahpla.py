@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 for al in range(123, 96, -1):
     if al % 2 == 0:
-        print(chr(al), end="")
+        cs = 0
     elif al % 2 != 0:
-        al = al - 32
-        print("{}".format(chr(al)), end="")
+        cs = 32
+    print("{}".format(chr(al - cs)), end="")
