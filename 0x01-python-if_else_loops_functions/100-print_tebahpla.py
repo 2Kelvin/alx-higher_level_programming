@@ -4,4 +4,4 @@ for al in range(123, 96, -1):
         print(chr(al), end="")
     elif al % 2 != 0:
         al = al - 32
-        print(chr(al), end="")
+        print("{}".format(chr(al)), end="")
