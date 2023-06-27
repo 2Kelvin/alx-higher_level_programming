@@ -4,7 +4,7 @@
 
 class Square:
     """Instantiate square with private attribute size
-    Args:
+    Attributes:
         size: size of one side of the square
     """
 
