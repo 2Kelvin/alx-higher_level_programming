@@ -48,6 +48,8 @@ class Square:
 
     def my_print(self):
         """Print the square in #"""
+        if self.__size == 0:
+            print()
         for sqRow in range(self.__size):
             for sqCol in range(self.__size):
                 print("#", end="")
