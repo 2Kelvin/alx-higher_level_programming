@@ -79,7 +79,7 @@ class Square:
             print()
         for sqRow in range(self.__size):
             for p in range(self.__position[0]):
-                print(" ", end="")
+                print(end=" ")
             for sqCol in range(self.__size):
                 print("#", end="")
             print()
