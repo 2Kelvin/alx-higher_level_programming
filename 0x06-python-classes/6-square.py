@@ -75,11 +75,12 @@ class Square:
         """Print the square in #"""
         if self.__size == 0:
             print()
-        for sp in range(self.__position[1]):
-            print()
-        for sqRow in range(self.__size):
-            for p in range(self.__position[0]):
-                print(end=" ")
-            for sqCol in range(self.__size):
-                print("#", end="")
-            print()
+        else:
+            for sp in range(self.__position[1]):
+                print()
+            for sqRow in range(self.__size):
+                for p in range(self.__position[0]):
+                    print(end=" ")
+                for sqCol in range(self.__size):
+                    print("#", end="")
+                print()
