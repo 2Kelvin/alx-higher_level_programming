@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/USR/BIn/python3
 """Contains class Rectangle"""
 
 
@@ -94,7 +94,7 @@ class Rectangle():
 
         Raises:
             TypeError: rect_1 & rect_2 must be instances of Rectangle
-            
+
         Returns: rectangle with the biggest area or rect_1 if equal
         """
         if type(rect_1) != Rectangle:
@@ -108,7 +108,7 @@ class Rectangle():
         elif rect_2.area() > rect_1.area():
             return rect_2
 
-    @classmethod    
+    @classmethod
     def square(cls, size=0):
         """Create new rectangle 'square', width = height
         Args:
