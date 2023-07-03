@@ -60,7 +60,7 @@ class Rectangle():
 
     def __str__(self):
         """Draw a rectangle
-        Returns: a '#' rectangle or an empty string 
+        Returns: a '#' rectangle or an empty string
         """
         if self.width == 0 or self.height == 0:
             return ""
