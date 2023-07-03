@@ -2,6 +2,6 @@
 """Contains class Rectangle"""
 
 
-def Rectangle():
+class Rectangle():
     """An empty rectangle class"""
     pass
