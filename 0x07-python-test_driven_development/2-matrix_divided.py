@@ -20,7 +20,7 @@ def matrix_divided(matrix, div):
             raise TypeError("Each row of the matrix must have the same size")
         for num in lst:
             if type(num) != int and type(num) != float:
-                raise TypeError("matrix must
+                raise TypeError("matrix must\
                                 be a matrix(list of lists) of integers/floats")
     if type(div) != int and type(div) != float:
         raise TypeError("div must be a number")
