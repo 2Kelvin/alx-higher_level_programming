@@ -15,13 +15,13 @@ def matrix_divided(matrix, div):
 
     Returns: a new matrix
     """
+    matrErr = "matrix must be a matrix (list of lists) of integers/floats"
     for lst in matrix:
         if len(lst) != len(matrix[0]):
             raise TypeError("Each row of the matrix must have the same size")
         for num in lst:
             if type(num) != int and type(num) != float:
-                raise TypeError("matrix must\
-                                be a matrix(list of lists) of integers/floats")
+                raise TypeError(matrErr)
     if type(div) != int and type(div) != float:
         raise TypeError("div must be a number")
     if div == 0:
