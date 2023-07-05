@@ -9,7 +9,7 @@ Test Cases:
     Cool?
     <BLANKLINE>
 
-    >>> text_indentation("You. )
+    >>> text_indentation("You. ")
     You.
     <BLANKLINE>
 
@@ -19,8 +19,8 @@ Test Cases:
     sauce.
     <BLANKLINE>
 
-    >>> text_indentation("  Wow.)
-    Wow
+    >>> text_indentation("  wow.")
+    wow.
     <BLANKLINE>
 
     >>> text_indentation()
