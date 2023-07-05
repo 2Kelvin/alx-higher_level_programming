@@ -58,6 +58,18 @@ class TestMaxInteger(unittest.TestCase):
         """Test a list with similar float"""
         self.assertEqual(max_integer([-3, -3, -3, -3]), -3)
 
+    def test_string(self):
+        """Tests the string passed"""
+        self.assertEqual(max_integer("basketball"), "t")
+
+    def test_one_item_list(self):
+        """Test a list containing only one item"""
+        self.assertEqual(max_integer([2]), 2)
+
+    def test_list_strings(self):
+        """Tests a list full of strings"""
+        self.assertEqual(max_integer(["toy", "uber", "engine"]), "uber")
+
 
 if __name__ == "__main__":
     unittest.main()
