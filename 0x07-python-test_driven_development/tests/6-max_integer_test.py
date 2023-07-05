@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Contains function max_integer unittests"""
+"""Unittest for max_integer([..])
+"""
 
 
 import unittest
