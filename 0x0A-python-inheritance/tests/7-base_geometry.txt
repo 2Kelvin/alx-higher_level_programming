@@ -89,3 +89,28 @@ Test Cases:
     Traceback (most recent call last):
         ...
     TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
+    >>> bg.integer_validator("my_int", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+    >>> bg.integer_validator("my_int", 4d78)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+    >>> bg.integer_validator("random", [])
+    Traceback (most recent call last):
+        ...
+    TypeError: random must be an integer
+
+    bg.integer_validator("obj", object)
+    Traceback (most recent call last):
+        ...
+    TypeError: obj must be an integer
+
+    >>> bg.integer_validator("mynan", float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: mynan must be an integer
