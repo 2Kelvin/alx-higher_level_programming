@@ -4,6 +4,7 @@
 
 class BaseGeometry():
     """Class BaseGeometry"""
+
     def area(self):
         """Unimplemented area method
 
