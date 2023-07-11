@@ -9,11 +9,8 @@ argc = len(sys.argv)
 theFile = "add_item.json"
 try:
     argsList = load_from_json_file(theFile)
-except:
+except FileNotFoundError:
     argsList = []
 for a in range(1, argc):
     argsList.append(sys.argv[a])
-try:
-    save_to_json_file(argsList, theFile)
-except:
-    pass
+save_to_json_file(argsList, theFile)
