@@ -13,4 +13,7 @@ except:
     argsList = []
 for a in range(1, argc):
     argsList.append(sys.argv[a])
-save_to_json_file(argsList, theFile)
+try:
+    save_to_json_file(argsList, theFile)
+except:
+    pass
