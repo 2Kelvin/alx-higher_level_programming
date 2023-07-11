@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Contains class Student"""
-import json
 
 
 class Student():
@@ -18,5 +17,5 @@ class Student():
 
     def to_json(self):
         """Retrieves a dictionary representation of a student"""
-        jsonObj = json.dumps(self.__dict__)
-        return jsonObj
+        selfDict = self.__dict__
+        return selfDict
