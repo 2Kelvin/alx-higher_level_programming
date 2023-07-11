@@ -4,7 +4,7 @@
 
 def pascal_triangle(n):
     """List of lists of integers representing Pascal's triangle
-    
+
     Args:
         n: integer
 
