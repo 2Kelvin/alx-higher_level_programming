@@ -278,6 +278,16 @@ class TestClassRectangle(unittest.TestCase):
         self.r5 = Rectangle(3, 9)
         self.assertEqual(self.r5.height, 9)
 
+    def test_x_getter(self):
+        """Getting the rectangle's x"""
+        self.r5 = Rectangle(3, 9, 55)
+        self.assertEqual(self.r5.x, 55)
+
+    def test_y_getter(self):
+        """Getting the rectangle's y"""
+        self.r5 = Rectangle(3, 9, 55, 90)
+        self.assertEqual(self.r5.y, 90)
+
     def test_x(self):
         """Getting the rectangle's x"""
         self.r5 = Rectangle(3, 9)
@@ -300,6 +310,157 @@ class TestClassRectangle(unittest.TestCase):
         self.r5 = Rectangle(3, 9)
         self.r5.update(20)
         self.assertEqual(self.r5.id, 20)
+
+    def test_width_update(self):
+        """Checking if update method works"""
+        self.r5 = Rectangle(3, 9)
+        self.r5.update(20, 45)
+        self.assertEqual(self.r5.width, 45)
+
+    def test_height_update(self):
+        """Checking if update method works"""
+        self.r5 = Rectangle(3, 9)
+        self.r5.update(20, 45, 3)
+        self.assertEqual(self.r5.height, 3)
+
+    def test_x_update(self):
+        """Checking if update method works"""
+        self.r5 = Rectangle(3, 9)
+        self.r5.update(20, 45, 3, 2)
+        self.assertEqual(self.r5.x, 2)
+
+    def test_y_update(self):
+        """Checking if update method works"""
+        self.r5 = Rectangle(3, 9)
+        self.r5.update(20, 45, 3, 2, 4)
+        self.assertEqual(self.r5.y, 4)
+
+    def test_kwargs_update(self):
+        """Checking if update method works"""
+        self.r5 = Rectangle(1, 2)
+        self.r5.update(x=9, id=8, y=33, height=11)
+        self.assertEqual(self.r5.x, 9)
+        self.assertEqual(self.r5.id, 8)
+        self.assertEqual(self.r5.y, 33)
+        self.assertEqual(self.r5.height, 11)
+
+    def test_kwargs_n_args(self):
+        """Checking use of args and kwargs together"""
+        self.r5 = Rectangle(1, 2)
+        self.r5.update(77, x=9, id=8, y=33, height=11)
+        self.assertEqual(self.r5.id, 77)
+
+    def test_to_dict_type(self):
+        """Check type returned from to_dictionary"""
+        r88 = Rectangle(21, 47)
+        self.assertEqual(type(r88.to_dictionary()), dict)
+
+    def test_no_height(self):
+        """Check error raised if argument is missing"""
+        with self.assertRaises(TypeError):
+            Rectangle(5)
+
+    def test_save_to_file_arg(self):
+        """Test weird argument that can be passed"""
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(False)
+
+    def test_to_dict_inst(self):
+        """Compare to_dictionary instances"""
+        re4 = Rectangle(6, 8, 5)
+        re4Dict = re4.to_dictionary()
+        re3 = Rectangle.create(**re4Dict)
+        self.assertNotEqual(re4, re3)
+
+    def test_nb_objects(self):
+        """Test and check order of object creation"""
+        r7 = Rectangle(7, 9)
+        r99 = Rectangle(19, 14)
+        self.assertEqual(r7.id, r99.id - 1)
+
+    def test_private_width(self):
+        """Test printing out the private attribute"""
+        with self.assertRaises(AttributeError):
+            r7 = Rectangle(7, 9)
+            print(r7.__width)
+
+    def test_private_height(self):
+        """Test printing out the private attribute"""
+        with self.assertRaises(AttributeError):
+            r7 = Rectangle(7, 9)
+            print(r7.__height)
+
+    def test_private_x(self):
+        """Test printing out the private attribute"""
+        with self.assertRaises(AttributeError):
+            r7 = Rectangle(7, 9, 5, 2)
+            print(r7.__x)
+
+    def test_private_y(self):
+        """Test printing out the private attribute"""
+        with self.assertRaises(AttributeError):
+            r7 = Rectangle(7, 9, 4, 2)
+            print(r7.__y)
+
+    def test_bytes_width(self):
+        """Pass bytes for width argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(b'Kotlin', 4)
+
+    def test_nan_width(self):
+        """Pass nan for width argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(float("nan"), 10)
+
+    def test_bytes_x(self):
+        """Pass bytes for x argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(2, 3, b'Kotlin')
+
+    def test_bytes_y(self):
+        """Pass bytes for y argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(2, 5, 3, b'Kotlin')
+
+    def test_nan_x(self):
+        """Pass nan for x argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(10, 11, float("nan"))
+
+    def test_nan_y(self):
+        """Pass nan for x argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(10, 11, 42, float("nan"))
+
+    def test_bytes_height(self):
+        """Pass bytes for height argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(4, b'Kotlin')
+
+    def test_nan_height(self):
+        """Pass nan for height argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(10, float("nan"))
+
+    def test_range_height(self):
+        """Pass range for height argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(12, range(9))
+
+    def test_range_x(self):
+        """Pass range for x argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(12, 13, range(9))
+
+    def test_range_y(self):
+        """Pass range for y argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(12, 14, 15, range(9))
+
+    def test_range_width(self):
+        """Pass range for width argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(range(9), 13)
 
 
 if __name__ == "__main__":

@@ -194,6 +194,12 @@ class TestClassSquare(unittest.TestCase):
         self.sq5 = Square(3)
         self.assertEqual(self.sq5.y, 0)
 
+    def test_y_setter(self):
+        """Setting the Square's y"""
+        self.sq5 = Square(3)
+        self.sq5.y = 127
+        self.assertEqual(self.sq5.y, 127)
+
     def test_string_x(self):
         """Expects type int not string"""
         with self.assertRaises(TypeError):
@@ -290,6 +296,114 @@ class TestClassSquare(unittest.TestCase):
         self.sq35 = Square(3)
         self.sq35.update(90)
         self.assertEqual(self.sq35.id, 90)
+
+    def test_size_update(self):
+        """Checking if update method works"""
+        self.sq17 = Square(3)
+        self.sq17.update(90, 4)
+        self.assertEqual(self.sq17.size, 4)
+
+    def test_x_update(self):
+        """Checking if update method works"""
+        self.sq17 = Square(3)
+        self.sq17.update(90, 4, 7)
+        self.assertEqual(self.sq17.x, 7)
+
+    def test_y_update(self):
+        """Checking if update method works"""
+        self.sq17 = Square(3)
+        self.sq17.update(90, 4, 7, 5)
+        self.assertEqual(self.sq17.y, 5)
+
+    def test_kwargs_update(self):
+        """Checking if update method works"""
+        self.sq17 = Square(2)
+        self.sq17.update(x=9, id=8, y=33, size=11)
+        self.assertEqual(self.sq17.x, 9)
+        self.assertEqual(self.sq17.id, 8)
+        self.assertEqual(self.sq17.y, 33)
+        self.assertEqual(self.sq17.size, 11)
+
+    def test_kwargs_n_args(self):
+        """Checking use of args and kwargs together"""
+        self.sq17 = Square(2)
+        self.sq17.update(77, x=9, id=8, y=33, size=11)
+        self.assertEqual(self.sq17.id, 77)
+
+    def test_to_dict_type(self):
+        """Check type returned from to_dictionary"""
+        sq88 = Square(47)
+        self.assertEqual(type(sq88.to_dictionary()), dict)
+
+    def test_no_size(self):
+        """Check error raised if argument is missing"""
+        with self.assertRaises(TypeError):
+            Square()
+
+    def test_save_to_file_arg(self):
+        """Test weird argument that can be passed"""
+        with self.assertRaises(TypeError):
+            Square.save_to_file(False)
+
+    def test_to_dict_inst(self):
+        """Compare to_dictionary instances"""
+        sq9 = Square(6, 5)
+        sq9Dict = sq9.to_dictionary()
+        sq8 = Square.create(**sq9Dict)
+        self.assertNotEqual(sq9, sq8)
+
+    def test_nb_objects(self):
+        """Test and check order of object creation"""
+        s7 = Square(79)
+        s99 = Square(14)
+        self.assertEqual(s7.id, s99.id - 1)
+
+    def test_private_x(self):
+        """Test printing out the private attribute"""
+        with self.assertRaises(AttributeError):
+            sr7 = Square(7, 9, 5, 4)
+            print(sr7.__x)
+
+    def test_private_y(self):
+        """Test printing out the private attribute"""
+        with self.assertRaises(AttributeError):
+            sqr7 = Square(7, 9, 4, 2)
+            print(sqr7.__y)
+
+    def test_square_height(self):
+        """Check square's height"""
+        ss = Square(7)
+        self.assertEqual(ss.height, 7)
+
+    def test_square_width(self):
+        """Check square's width"""
+        ss = Square(7)
+        self.assertEqual(ss.width, 7)
+
+    def test_square_x(self):
+        """Check square's x"""
+        ss = Square(7)
+        self.assertEqual(ss.x, 0)
+
+    def test_square_y(self):
+        """Check square's y"""
+        ss = Square(7)
+        self.assertEqual(ss.y, 0)
+
+    def test_bytes_size(self):
+        """Pass bytes for size argument"""
+        with self.assertRaises(TypeError):
+            Square(b'Kotlin')
+
+    def test_range_size(self):
+        """Pass range for size argument"""
+        with self.assertRaises(TypeError):
+            Square(range(9))
+
+    def test_nan_size(self):
+        """Pass nan for size argument"""
+        with self.assertRaises(TypeError):
+            Square(float("nan"))
 
 
 if __name__ == "__main__":
