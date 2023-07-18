@@ -3,6 +3,10 @@
 import unittest
 from models.rectangle import Rectangle
 from models.base import Base
+import sys
+from io import StringIO
+import os
+import json
 
 
 rec = Rectangle(10, 2)
@@ -461,6 +465,65 @@ class TestClassRectangle(unittest.TestCase):
         """Pass range for width argument"""
         with self.assertRaises(TypeError):
             Rectangle(range(9), 13)
+
+    def test_output_to_dictionary(self):
+        """Test to_dictionary method output"""
+        r29 = Rectangle(10, 2, 1, 9, 5)
+        ans = {'x': 1, 'y': 9, 'id': 5, 'height': 2, 'width': 10}
+        self.assertDictEqual(ans, r29.to_dictionary())
+
+    def test_load_from_file_method(self):
+        """Test JSON loading from a file"""
+        rect1 = Rectangle(10, 7, 2, 8)
+        rectLst = [rect1]
+        Rectangle.save_to_file(rectLst)
+        lstOut = Rectangle.load_from_file()
+        self.assertNotEqual(id(rect1), id(lstOut[0]))
+
+    def test_display_method_rec(self):
+        """Test display method"""
+        disOut = StringIO()
+        sys.stdout = disOut
+        rec5 = Rectangle(10, 4)
+        rec5.display()
+        sys.stdout = sys.__stdout__
+        theOut = ("##########\n" +
+                  "##########\n" +
+                  "##########\n" +
+                  "##########\n")
+        self.assertEqual(disOut.getvalue(), theOut)
+
+    def test_save_to_file_method(self):
+        """Test save_to_file method"""
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+        rec11 = Rectangle(5, 10, 0, 0, 346)
+        Rectangle.save_to_file([rec11])
+
+        with open("Rectangle.json", "r") as recfile:
+            recdata = recfile.read()
+        recLst = [{"x": 0, "y": 0, "id": 346, "height": 10, "width": 5}]
+        self.assertEqual(recLst, json.loads(recdata))
+
+    def test_err_save_to_file(self):
+        """Testing type error"""
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(self)
+
+    def test_none_save_to_file(self):
+        """Checking empty list saved if method failed"""
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+        rect1 = Rectangle(5, 10, 0, 0, 346)
+        Rectangle.save_to_file(None)
+
+        with open("Rectangle.json", "r") as afile:
+            dta = afile.read()
+        self.assertEqual("[]", dta)
 
 
 if __name__ == "__main__":

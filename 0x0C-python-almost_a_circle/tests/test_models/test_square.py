@@ -4,6 +4,7 @@ import unittest
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
+import os
 
 
 s1 = Square(5)
@@ -404,6 +405,77 @@ class TestClassSquare(unittest.TestCase):
         """Pass nan for size argument"""
         with self.assertRaises(TypeError):
             Square(float("nan"))
+
+    def test_to_dict_print(self):
+        """Test to_dictionary print"""
+        sq2 = Square(5, 90, 5, 37)
+        sq2dict = sq2.to_dictionary()
+        answ = {'size': 5, 'id': 37, 'x': 90, 'y': 5}
+        self.assertEqual(sq2dict, answ)
+
+    def test_none_save_to_file(self):
+        """Checking empty list saved if method failed"""
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+        sqr = Square(5, 0, 0, 346)
+        Square.save_to_file(None)
+        with open("Square.json", "r") as afile:
+            dta = afile.read()
+        self.assertEqual("[]", dta)
+
+    def test_empty_save_to_file(self):
+        """Checking empty list saved if method failed"""
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+        sqr = Square(5, 0, 0, 346)
+        Square.save_to_file([])
+        with open("Square.json", "r") as afile:
+            dta = afile.read()
+        self.assertEqual("[]", dta)
+
+    def test_save_to_file2(self):
+        """Test save to file two"""
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+        sq1 = Square(5, 0, 0, 87)
+        Square.save_to_file([sq1])
+        with open("Square.json", "r") as sqFile:
+            sqData = sqFile.read()
+        self.assertEqual(str, type(sqData))
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+    def test_load_from_file_sq(self):
+        """Test method load from file in the square"""
+        sq2 = Square(10)
+        inList = [sq2]
+        Square.save_to_file(inList)
+        outList = Square.load_from_file()
+        self.assertNotEqual(id(sq2), id(outList[0]))
+
+    def test_same_load_from_file(self):
+        """Load from the same file test"""
+        sq3 = Square(10)
+        liin = [sq3]
+        Square.save_to_file(liin)
+        liout = Square.load_from_file()
+        self.assertEqual(sq3.size, liout[0].size)
+
+    def test_x_same_load_from_file(self):
+        """Load from the same file test"""
+        sq3 = Square(10)
+        liin = [sq3]
+        Square.save_to_file(liin)
+        liout = Square.load_from_file()
+        self.assertEqual(sq3.x, liout[0].x)
 
 
 if __name__ == "__main__":
