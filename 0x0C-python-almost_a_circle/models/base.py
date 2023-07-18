@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Contains Base class"""
 import json
+import csv
 
 
 class Base:
@@ -87,5 +88,48 @@ class Base:
             with open(fileName, "r", encoding="utf-8") as myFile:
                 theList = Base.from_json_string(myFile.read())
                 return [cls.create(**dct) for dct in theList]
+        except IOError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes in CSV
+
+        Args:
+            cls: class
+            list_objs: list of instances to serialize
+        """
+        csvfile = f"{cls.__name__}.csv"
+        with open(csvfile, "w", newline="") as mycsvFile:
+            if len(list_objs) == 0 or list_objs is None:
+                mycsvFile.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    cellNames = ["id", "width", "height", "x", "y"]
+                else:
+                    cellNames = ["id", "size", "x", "y"]
+                addData = csv.DictWriter(mycsvFile, fieldnames=cellNames)
+                for eachObj in list_objs:
+                    addData.writerow(eachObj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserialize in CSV
+
+        Args:
+            cls: a class
+        """
+        fileName = f"{cls.__name__}.csv"
+        try:
+            with open(fileName, "r", newline="") as acsvFile:
+                if cls.__name__ == "Rectangle":
+                    cellNames = ["id", "width", "height", "x", "y"]
+                else:
+                    cellNames = ["id", "size", "x", "y"]
+                dlst = csv.DictReader(acsvFile, fieldnames=cellNames)
+                dlst = [
+                    dict([ky, int(vl)] for ky, vl in dt.items()) for dt in dlst
+                ]
+                return [cls.create(**dc) for dc in dlst]
         except IOError:
             return []
