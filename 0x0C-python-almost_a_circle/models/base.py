@@ -43,7 +43,7 @@ class Base:
                 myFile.write(Base.to_json_string([]))
             listDicts = []
             for obj in list_objs:
-                listDicts.append(obj.__dict__)
+                listDicts.append(obj.to_dictionary())
             myFile.write(Base.to_json_string(listDicts))
 
     @staticmethod
