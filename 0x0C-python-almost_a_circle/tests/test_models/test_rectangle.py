@@ -7,6 +7,7 @@ import sys
 from io import StringIO
 import os
 import json
+import io
 
 
 rec = Rectangle(10, 2)
@@ -565,6 +566,49 @@ class TestClassRectangle(unittest.TestCase):
         re55Dict = rect55.to_dictionary()
         ans = {'height': 19, 'id': 6, 'width': 7, 'x': 10, 'y': 20}
         self.assertEqual(re55Dict, ans)
+
+    def test_display_without_y(self):
+        rec4 = Rectangle(3, 2, 1)
+        r_displ = TestRectangleDisplay.rectangle_stdout(rec4, "display")
+        self.assertEqual(" ###\n ###\n", r_displ.getvalue())
+
+    def test_display_all_attributes(self):
+        rr = Rectangle(2, 4, 3, 2, 0)
+        disp = TestRectangleDisplay.rectangle_stdout(rr, "display")
+        rr_display = "\n\n   ##\n   ##\n   ##\n   ##\n"
+        self.assertEqual(rr_display, disp.getvalue())
+
+    def test_display_with_y(self):
+        ry = Rectangle(4, 5, 0, 1, 0)
+        ryDisp = TestRectangleDisplay.rectangle_stdout(ry, "display")
+        displ = "\n####\n####\n####\n####\n####\n"
+        self.assertEqual(displ, ryDisp.getvalue())
+
+    def test_err_display(self):
+        r_err = Rectangle(5, 1, 2, 4, 7)
+        with self.assertRaises(TypeError):
+            r_err.display(23)
+
+
+class TestRectangleDisplay(unittest.TestCase):
+    """Class to test rectangle's display method"""
+
+    @staticmethod
+    def rectangle_stdout(rec, func):
+        """Returns the output printed
+
+        Args:
+            rec: a rectangle
+            func: any rectangle's method
+        """
+        displ = io.StringIO()
+        sys.stdout = displ
+        if func == "print":
+            print(rec)
+        else:
+            rec.display()
+        sys.stdout = sys.__stdout__
+        return displ
 
 
 if __name__ == "__main__":

@@ -5,6 +5,10 @@ from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 import os
+from contextlib import redirect_stdout
+import io
+import sys
+from io import StringIO
 
 
 s1 = Square(5)
@@ -488,6 +492,82 @@ class TestClassSquare(unittest.TestCase):
         """Test to_dictionary dictionary type"""
         sq12 = Square(9)
         self.assertEqual(type(sq12.to_dictionary()), dict)
+
+    def test_display(self):
+        """Test for square's display method"""
+        sqr = Square(2, 0, 0, 4)
+        with io.StringIO() as bufferIO, redirect_stdout(bufferIO):
+            sqr.display()
+            theout = bufferIO.getvalue()
+            self.assertEqual(theout, ('#' * 2 + '\n') * 2)
+        sqr = Square(2, 3, 4, 5)
+        with io.StringIO() as bufferIO, redirect_stdout(bufferIO):
+            sqr.display()
+            theout = bufferIO.getvalue()
+            ansr = ('\n' * 4 + (' ' * 3 + '#' * 2 + '\n') * 2)
+            self.assertEqual(theout, ansr)
+
+    def test_display_square(self):
+        """Testing the square displayed"""
+        sqPrinted = StringIO()
+        sys.stdout = sqPrinted
+        mysq = Square(10)
+        mysq.display()
+        sys.stdout = sys.__stdout__
+        displ = ("##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n" +
+                 "##########\n")
+        self.assertEqual(sqPrinted.getvalue(), displ)
+
+    def test_no_y_display(self):
+        sqr = Square(3, 1)
+        listener = TestSquareDisplay.square_stdout(sqr, "display")
+        self.assertEqual(" ###\n ###\n ###\n", listener.getvalue())
+
+    def test_no_x_display(self):
+        sqx = Square(4, 0, 1, 9)
+        lstener = TestSquareDisplay.square_stdout(sqx, "display")
+        answ = "\n####\n####\n####\n####\n"
+        self.assertEqual(answ, lstener.getvalue())
+
+    def test_all_display(self):
+        sqa = Square(2, 3, 2, 1)
+        displ = TestSquareDisplay.square_stdout(sqa, "display")
+        answ = "\n\n   ##\n   ##\n"
+        self.assertEqual(answ, displ.getvalue())
+
+    def test_display_error(self):
+        sqe = Square(3, 4, 5, 2)
+        with self.assertRaises(TypeError):
+            sqe.display(90)
+
+
+class TestSquareDisplay(unittest.TestCase):
+    """Class to test square's display method"""
+
+    @staticmethod
+    def square_stdout(rec, func):
+        """Returns the output printed
+
+        Args:
+            rec: a rectangle
+            func: any rectangle's method
+        """
+        displ = io.StringIO()
+        sys.stdout = displ
+        if func == "print":
+            print(rec)
+        else:
+            rec.display()
+        sys.stdout = sys.__stdout__
+        return displ
 
 
 if __name__ == "__main__":
