@@ -81,12 +81,11 @@ class Base:
         fileName = f"{cls.__name__}.json"
         try:
             with open(fileName, "r", encoding="utf-8") as myFile:
-                fileData = myFile.read()
-                theList = []
-                for dt in Base.from_json_string(fileData):
+                theList = Base.from_json_string(myFile.read())
+                for dt in theList:
                     newDt = cls.create(**dt)
-                    theList.append(newDt)
-                return theList
+                    newList = []
+                    newList.append(newDt)
+                return newList
         except IOError:
-            if fileName is None:
                 return []
