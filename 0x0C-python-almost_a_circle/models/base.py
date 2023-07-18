@@ -83,7 +83,8 @@ class Base:
             return []
         with open(fileName, "r", encoding="utf-8") as myFile:
             fileData = myFile.read()
-        theList = []
-        for dt in cls.from_json_string(fileData):
-            theList.append(cls.create(**dt))
-        return theList
+            theList = []
+            for dt in Base.from_json_string(fileData):
+                newDt = cls.create(**dt)
+                theList.append(newDt)
+            return theList
