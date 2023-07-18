@@ -38,12 +38,13 @@ class Base:
             cls: a class
             list_objs: a python list containing Base inheriting objects
         """
-        with open(f"{cls.__name__}.json", "w", encoding="utf-8") as myFile:
-            if list_objs is None:
-                myFile.write(Base.to_json_string([]))
+        if list_objs is None:
+            listDicts = []
+        else:
             listDicts = []
             for obj in list_objs:
                 listDicts.append(obj.to_dictionary())
+        with open(f"{cls.__name__}.json", "w", encoding="utf-8") as myFile:
             myFile.write(Base.to_json_string(listDicts))
 
     @staticmethod
