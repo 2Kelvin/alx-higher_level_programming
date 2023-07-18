@@ -88,4 +88,5 @@ class Base:
                     newList.append(newDt)
                 return newList
         except IOError:
+            if fileName is None:
                 return []
