@@ -480,6 +480,22 @@ class TestClassRectangle(unittest.TestCase):
         lstOut = Rectangle.load_from_file()
         self.assertNotEqual(id(rect1), id(lstOut[0]))
 
+    def test_same_y_load_from_file(self):
+        """Test JSON loading from a file"""
+        rect1 = Rectangle(10, 7, 2, 8)
+        rectLst = [rect1]
+        Rectangle.save_to_file(rectLst)
+        lstOut = Rectangle.load_from_file()
+        self.assertEqual(rect1.y, lstOut[0].y)
+
+    def test_sameWidth_load_from_file(self):
+        """Test JSON loading from a file"""
+        rect1 = Rectangle(10, 7, 2, 8)
+        rectLst = [rect1]
+        Rectangle.save_to_file(rectLst)
+        lstOut = Rectangle.load_from_file()
+        self.assertEqual(rect1.width, lstOut[0].width)
+
     def test_display_method_rec(self):
         """Test display method"""
         disOut = StringIO()
@@ -524,6 +540,31 @@ class TestClassRectangle(unittest.TestCase):
         with open("Rectangle.json", "r") as afile:
             dta = afile.read()
         self.assertEqual("[]", dta)
+
+    def test_empty_save_to_file(self):
+        """Checking empty list saved if method failed"""
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+        rect1 = Rectangle(5, 10, 0, 0, 346)
+        Rectangle.save_to_file([])
+
+        with open("Rectangle.json", "r") as afile:
+            dta = afile.read()
+        self.assertEqual("[]", dta)
+
+    def test_rectangle_to_dictionary(self):
+        """Test to_dictionary method"""
+        rect15 = Rectangle(12, 9)
+        self.assertEqual(type(rect15.to_dictionary()), dict)
+
+    def test_to_dict_print(self):
+        """Test type of the dictionary"""
+        rect55 = Rectangle(7, 19, 10, 20, 6)
+        re55Dict = rect55.to_dictionary()
+        ans = {'height': 19, 'id': 6, 'width': 7, 'x': 10, 'y': 20}
+        self.assertEqual(re55Dict, ans)
 
 
 if __name__ == "__main__":

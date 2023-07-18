@@ -244,7 +244,7 @@ class TestClassSquare(unittest.TestCase):
     def test_negative_arg_y(self):
         """Expects a int greater than 0"""
         with self.assertRaises(ValueError):
-            Square(13, -1)
+            Square(1, 2, -3)
 
     def test_dict_x(self):
         """Expects type int not dict"""
@@ -476,6 +476,18 @@ class TestClassSquare(unittest.TestCase):
         Square.save_to_file(liin)
         liout = Square.load_from_file()
         self.assertEqual(sq3.x, liout[0].x)
+
+    def test_output_to_dictionary_sq(self):
+        """Test to_dictionary method output"""
+        sq62 = Square(21, 43, 55, 67)
+        sq62dict = sq62.to_dictionary()
+        ans = {'size': 21, 'id': 67, 'x': 43, 'y': 55}
+        self.assertEqual(sq62dict, ans)
+
+    def test_type_to_dictionary(self):
+        """Test to_dictionary dictionary type"""
+        sq12 = Square(9)
+        self.assertEqual(type(sq12.to_dictionary()), dict)
 
 
 if __name__ == "__main__":
