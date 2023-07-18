@@ -79,12 +79,14 @@ class Base:
     def load_from_file(cls):
         """Returns a list of instance objects"""
         fileName = f"{cls.__name__}.json"
-        if fileName is None:
-            return []
-        with open(fileName, "r", encoding="utf-8") as myFile:
-            fileData = myFile.read()
-            theList = []
-            for dt in Base.from_json_string(fileData):
-                newDt = cls.create(**dt)
-                theList.append(newDt)
-            return theList
+        try:
+            with open(fileName, "r", encoding="utf-8") as myFile:
+                fileData = myFile.read()
+                theList = []
+                for dt in Base.from_json_string(fileData):
+                    newDt = cls.create(**dt)
+                    theList.append(newDt)
+                return theList
+        except IOError:
+            if fileName is None:
+                return []
