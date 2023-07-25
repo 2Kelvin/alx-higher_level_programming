@@ -11,8 +11,13 @@ int is_palindrome(listint_t **head)
 {
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
-	listint_t *s = *head, *f = *head, *nxtNode;
-	listint_t *prevNode, *curNode, *firstP, *lastP;
+	listint_t *s = *head;
+	listint_t *f = *head;
+	listint_t *nxtNode;
+	listint_t *prevNode;
+	listint_t *curNode;
+	listint_t *firstP;
+	listint_t *lastP;
 
 	while (f && f->next)
 	{
