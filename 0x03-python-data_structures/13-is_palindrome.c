@@ -9,8 +9,6 @@
 
 int is_palindrome(listint_t **head)
 {
-	if (*head == NULL || (*head)->next == NULL)
-		return (1);
 	listint_t *s = *head;
 	listint_t *f = *head;
 	listint_t *nxtNode;
@@ -18,6 +16,9 @@ int is_palindrome(listint_t **head)
 	listint_t *curNode;
 	listint_t *firstP;
 	listint_t *lastP;
+
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
 
 	while (f && f->next)
 	{
