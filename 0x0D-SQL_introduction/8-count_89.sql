@@ -1,3 +1,3 @@
--- Using COUNT
+-- Using COUNT & WHERE
 -- Displaying number of records with an id of 89
-SELECT COUNT(ID=89) FROM first_table;
+SELECT COUNT(*) FROM first_table WHERE id=89;
