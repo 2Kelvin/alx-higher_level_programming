@@ -1,6 +1,6 @@
 -- Full table & data creation
 -- Creating second_table and its data
-CREATE second_table IF NOT EXISTS
+CREATE TABLE IF NOT EXISTS second_table
 (id INT, name VARCHAR(256), score INT);
 INSERT INTO second_table VALUES
 (1, "John", 10),
