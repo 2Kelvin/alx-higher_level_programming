@@ -1,3 +1,4 @@
 -- Prints table full description
 -- Printing first table's full description
-SHOW COLUMNS first_table;
+-- without using DESCRIBE or EXPLAIN
+SHOW CREATE TABLE first_table;
