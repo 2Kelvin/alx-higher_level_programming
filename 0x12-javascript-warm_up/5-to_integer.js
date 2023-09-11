@@ -2,6 +2,5 @@
 // An integer
 const args = process.argv;
 if (parseInt(args[2], 10)) {
-    console.log(`My number: ${parseInt(args[2], 10)}`);
-}
-else console.log("Not a number");
+  console.log(`My number: ${parseInt(args[2], 10)}`);
+} else console.log('Not a number');
