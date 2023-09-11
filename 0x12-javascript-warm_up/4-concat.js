@@ -1,4 +1,3 @@
 #!/usr/bin/node
 // Create a sentence
-const format = ' is ';
-console.log(`${process.argv[2]} ${format} ${process.argv[3]}`);
+console.log(`${process.argv[2]} is ${process.argv[3]}`);
