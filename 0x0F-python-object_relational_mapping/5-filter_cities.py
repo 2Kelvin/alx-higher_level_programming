@@ -13,11 +13,10 @@ if __name__ == '__main__':
         db=argv[3]
     )
     cursr = dbConnection.cursor()
-    cursr.execute(
-        'SELECT cities.name FROM cities JOIN states ON \
-            cities.state_id=states.id WHERE states.name=%s \
-                ORDER BY cities.id', (argv[4], )
-    )
+    citiesQuery = 'SELECT cities.name FROM cities WHERE cities.state_id IN \
+        (SELECT states_id FROM states WHERE states.name = %s) ORDER BY \
+            cities.id'
+    cursr.execute(citiesQuery, (stateName,))
     for row in cursr.fetchall():
         print(', '.join(row[0]))
     cursr.close()
