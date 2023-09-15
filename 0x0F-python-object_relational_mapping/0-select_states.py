@@ -14,9 +14,12 @@ if __name__ == '__main__':
     )
 
 myCursor = myDatabase.cursor()
-query = 'SELECT * FROM states ORDER BY states.id'
+query = 'SELECT * FROM states ORDER BY id'
 myCursor.execute(query)
 
 # fetchall() contains all rows
 for oneRow in myCursor.fetchall():
     print(oneRow)
+
+myCursor.close()
+myDatabase.close()
