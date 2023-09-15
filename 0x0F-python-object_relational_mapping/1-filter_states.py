@@ -4,18 +4,13 @@ import MySQLdb
 from sys import argv
 
 
-def filterStates(argUser, argPswd, argDbName):
-    """Lists all states with a name starting with N"""
-    argUser = argv[1]
-    argPswd = argv[2]
-    argDbName = argv[3]
-
+if __name__ == '__main__':
     dbConnection = MySQLdb.connect(
         host='localhost',
         port=3306,
-        user=argUser,
-        passwd=argPswd,
-        db=argDbName
+        user=argv[1],
+        passwd=argv[2],
+        db=argv[3]
     )
     selectQuery = 'SELECT * FROM states WHERE name LIKE "N%" ORDER BY id'
     cursorDb = dbConnection.cursor()
@@ -24,7 +19,3 @@ def filterStates(argUser, argPswd, argDbName):
         print(row)
     cursorDb.close()
     dbConnection.close()
-
-
-if __name__ == '__main__':
-    filterStates()
