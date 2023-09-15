@@ -4,9 +4,9 @@ import MySQLdb
 from sys import argv
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     myDatabase = MySQLdb.connect(
-        host="localhost",
+        host='localhost',
         port=3306,
         user=argv[1],
         passwd=argv[2],
@@ -14,11 +14,9 @@ if __name__ == "__main__":
     )
 
 myCursor = myDatabase.cursor()
-myCursor.execute("SELECT * FROM states ORDER BY states.id")
-allRows = myCursor.fetchall()
+query = 'SELECT * FROM states ORDER BY states.id'
+myCursor.execute(query)
 
-for oneRow in allRows:
+# fetchall() contains all rows
+for oneRow in myCursor.fetchall():
     print(oneRow)
-
-myCursor.close()
-myDatabase.close()
