@@ -12,10 +12,9 @@ if __name__ == '__main__':
         passwd=argv[2],
         db=argv[3]
     )
-    query = 'SELECT * FROM states WHERE BINARY name=%s ORDER \
-        BY id', (argv[4], )
     cursorDb = dbConnection.cursor()
-    cursorDb.execute(query)
+    cursorDb.execute('SELECT * FROM states WHERE \
+                     BINARY %(name)s ORDER BY id', {'name': argv[4]})
     for row in cursorDb.fetchall():
         print(row)
     cursorDb.close()
