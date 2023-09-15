@@ -17,7 +17,6 @@ if __name__ == '__main__':
         cities.state_id=states.id WHERE states.name LIKE %s ORDER \
             BY cities.id'
     cursr.execute(citiesQuery, (argv[4],))
-    for row in cursr.fetchall():
-        print(', '.join(row[0]))
+    print(', '.join(cty[0] for cty in cursr.fetchall()))
     cursr.close()
     dbConnection.close()
