@@ -12,7 +12,7 @@ if __name__ == '__main__':
         passwd=argv[2],
         db=argv[3]
     )
-    selectQuery = 'SELECT * FROM states WHERE name LIKE "N%" ORDER BY id'
+    selectQuery = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id"
     cursorDb = dbConnection.cursor()
     cursorDb.execute(selectQuery)
     for row in cursorDb.fetchall():
