@@ -19,6 +19,6 @@ if __name__ == '__main__':
                 ORDER BY cities.id', (argv[4], )
     )
     for row in cursr.fetchall():
-        print(row)
+        print(', '.join(row[0]))
     cursr.close()
     dbConnection.close()
