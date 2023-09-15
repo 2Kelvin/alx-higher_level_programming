@@ -6,7 +6,7 @@ from sys import argv
 
 if __name__ == "__main__":
     myDatabase = MySQLdb.connect(
-        host='localhost',
+        host="localhost",
         port=3306,
         user=argv[1],
         passwd=argv[2],
@@ -14,8 +14,7 @@ if __name__ == "__main__":
     )
 
 myCursor = myDatabase.cursor()
-myQuery = 'SELECT * FROM states ORDER BY states.id'
-myCursor.execute(myQuery)
+myCursor.execute("SELECT * FROM states ORDER BY states.id")
 allRows = myCursor.fetchall()
 
 for oneRow in allRows:
