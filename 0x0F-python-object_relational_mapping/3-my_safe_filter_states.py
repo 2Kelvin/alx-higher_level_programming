@@ -13,7 +13,7 @@ if __name__ == '__main__':
         db=argv[3]
     )
     cursorDb = dbConnection.cursor()
-    cursorDb.execute('SELECT * FROM states WHERE \
+    cursorDb.execute('SELECT * FROM states WHERE name LIKE \
                      BINARY %(name)s ORDER BY id', {'name': argv[4]})
     for row in cursorDb.fetchall():
         print(row)
