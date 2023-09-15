@@ -13,13 +13,13 @@ if __name__ == '__main__':
         db=argv[3]
     )
 
-myCursor = myDatabase.cursor()
-query = 'SELECT * FROM states ORDER BY id'
-myCursor.execute(query)
+    myCursor = myDatabase.cursor()
+    query = 'SELECT * FROM states ORDER BY id'
+    myCursor.execute(query)
 
-# fetchall() contains all rows
-for oneRow in myCursor.fetchall():
-    print(oneRow)
+    # fetchall() contains all rows
+    for oneRow in myCursor.fetchall():
+        print(oneRow)
 
-myCursor.close()
-myDatabase.close()
+    myCursor.close()
+    myDatabase.close()
