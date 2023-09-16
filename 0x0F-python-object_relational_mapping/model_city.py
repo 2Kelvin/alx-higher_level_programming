@@ -18,15 +18,14 @@ class City(Base):
     id = Column(
         'id',
         Integer,
+        primary_key=True,
         autoincrement=True,
-        unique=True,
-        nullable=False,
-        primary_key=True
+        nullable=False
     )
     name = Column('name', String(128), nullable=False)
     state_id = Column(
         'state_id',
-        ForeignKey('states.id'),
         Integer,
+        ForeignKey('states.id'),
         nullable=False
     )

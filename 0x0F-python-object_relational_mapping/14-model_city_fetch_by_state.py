@@ -10,6 +10,7 @@ from model_city import City
 if __name__ == '__main__':
     cnctor = f'mysql+mysqldb://{a[1]}:{a[2]}@localhost:3306/{a[3]}'
     sqlEngine = create_engine(cnctor, pool_pre_ping=True)
+    Base.metadata.create_all(sqlEngine)
     Session = sessionmaker(bind=sqlEngine)
     sesn = Session()
     usCities = sesn.query(City, State).filter(City.state_id == State.id)\
