@@ -12,8 +12,8 @@ if __name__ == '__main__':
     sqlEngine = create_engine(cnctor, pool_pre_ping=True)
     Session = sessionmaker(bind=sqlEngine)
     sesn = Session()
-    usCities = sesn.query(City, State).join(State)
-    for cty, stte in usCities.all():
+    usCities = sesn.query(City, State).filter(City.state_id == State.id)\
+        .order_by(City.id).all()
+    for cty, stte in usCities:
         print(f'{stte.name}: ({cty.id}) {cty.name}')
-    sesn.commit()
     sesn.close()
