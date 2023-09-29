@@ -11,12 +11,12 @@ if __name__ == '__main__':
         q = sys.argv[1]
     qData = {'q': q}
     serverUrl = 'http://0.0.0.0:5000/search_user'
-    httpResponse = requests.post(serverUrl, qData)
+    httpResponse = requests.post(serverUrl, data=qData)
     try:
         outpt = httpResponse.json()
         if outpt:
             print(f'[{outpt.get("id")}] {outpt.get("name")}')
         else:
             print('No result')
-    except:
+    except ValueError:
         print('Not a valid JSON')
