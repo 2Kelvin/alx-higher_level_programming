@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Handling URL exceptions and errors
+"""Handling URL exceptions and errors"""
 
 if __name__ == '__main__':
     import urllib.request

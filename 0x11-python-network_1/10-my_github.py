@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Using the GitHub API
+"""Using the GitHub API"""
 
 if __name__ == '__main__':
     import requests

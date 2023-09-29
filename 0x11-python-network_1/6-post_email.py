@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# POST an email using requests module
+"""POST an email using requests module"""
 
 if __name__ == '__main__':
     import requests

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# POST an email
+"""POST an email"""
 
 if __name__ == '__main__':
     import urllib.request

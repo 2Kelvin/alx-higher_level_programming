@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# requests module: Handling URL exceptions and errors
+"""requests module: Handling URL exceptions and errors"""
 
 if __name__ == '__main__':
     import requests

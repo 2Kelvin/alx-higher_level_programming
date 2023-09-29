@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Search API (JSON)
+"""Search API (JSON)"""
 
 if __name__ == '__main__':
     import requests

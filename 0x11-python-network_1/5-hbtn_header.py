@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Using requests to fetch X-Request-Id value
+"""Using requests to fetch X-Request-Id value"""
 
 if __name__ == '__main__':
     import requests

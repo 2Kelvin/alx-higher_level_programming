@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Using requests module to fetch url data
+"""Using requests module to fetch url data"""
 
 if __name__ == '__main__':
     import requests

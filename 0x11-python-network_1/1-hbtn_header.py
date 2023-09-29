@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Fetching URL data & displaying X-Request-Id
+"""Fetching URL data & displaying X-Request-Id"""
 
 if __name__ == '__main__':
     import urllib.request
