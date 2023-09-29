@@ -14,9 +14,9 @@ if __name__ == '__main__':
     httpResponse = requests.post(serverUrl, data=qData)
     try:
         outpt = httpResponse.json()
-        if outpt:
-            print(f'[{outpt.get("id")}] {outpt.get("name")}')
-        else:
+        if outpt == {}:
             print('No result')
+        else:
+            print(f'[{outpt.get("id")}] {outpt.get("name")}')
     except ValueError:
         print('Not a valid JSON')
