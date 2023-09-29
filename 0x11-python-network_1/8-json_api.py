@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""Search API (JSON): using a post request"""
+"""Search API (JSON): using requests post"""
 
 if __name__ == '__main__':
     import requests
     import sys
 
-    if len(sys.argv[1]) > 1:
-        q = sys.argv[1]
+    if sys.argv[1] is None:
+        q = ""
     else:
-        q = ''
+        q = sys.argv[1]
     qData = {'q': q}
     serverUrl = 'http://0.0.0.0:5000/search_user'
     httpResponse = requests.post(serverUrl, data=qData)
