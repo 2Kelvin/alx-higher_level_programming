@@ -10,6 +10,8 @@ if __name__ == '__main__':
     githubApiUrl = 'https://api.github.com'
     fullUrl = f'{githubApiUrl}/repos/{owner}/{repo}/commits'
     httpResponse = requests.get(fullUrl)
-    respToJson = httpResponse.json()
-    for commit in respToJson[:10]:
-        print(f'{commit["sha"]}:{commit["commit"]["author"]["name"]}')
+    # print(httpResponse.text, '\n')
+    commits = httpResponse.json()
+    for i in range(0, 10):
+        print(f'{commits[i].get("sha")}: \
+              {commits[i].get("commit").get("author").get("name")}')
