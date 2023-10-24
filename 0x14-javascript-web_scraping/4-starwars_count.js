@@ -12,7 +12,6 @@ request(apiURL, (err, response, body) => {
   for (const movie of allStarWarsMovies) {
     for (const xter of movie.characters) {
       const seekId = xter.substring(43, 45);
-      console.log(seekId);
       if (seekId === wAntillesId) filmCount++;
     }
   }
