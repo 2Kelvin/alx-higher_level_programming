@@ -10,8 +10,9 @@ request(apiURL, (err, response, body) => {
   const allStarWarsMovies = JSON.parse(body).results;
 
   for (const movie of allStarWarsMovies) {
-    for (const xter in movie.characters) {
-      if (xter === wAntillesId) {
+    for (const xter of movie.characters) {
+      const searchStr = `https://swapi-api.alx-tools.com/api/people/${wAntillesId}/`;
+      if (xter === searchStr) {
         filmCount++;
       }
     }
