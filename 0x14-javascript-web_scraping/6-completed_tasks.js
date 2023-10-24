@@ -9,6 +9,7 @@ request(apiURL, (err, response, body) => {
 
   const todosList = JSON.parse(body);
 
+  const output = {};
   for (let idUser = 1; idUser < 11; idUser++) {
     let countCompleted = 0;
     for (const todo of todosList) {
@@ -16,8 +17,7 @@ request(apiURL, (err, response, body) => {
         if (todo.completed === true) countCompleted++;
       }
     }
-    if (idUser === 1) console.log(`{ '${idUser}': ${countCompleted},`);
-    else if (idUser === 10) console.log(`  "${idUser}": ${countCompleted} }`);
-    else console.log(`  '${idUser}': ${countCompleted},`);
+    output[idUser] = countCompleted;
   }
+  console.log(output);
 });
