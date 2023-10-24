@@ -7,17 +7,17 @@ const apiURL = process.argv[2];
 request(apiURL, (err, response, body) => {
   if (err) console.error(`error: ${err}`);
 
-  const todosList = JSON.parse(body);
-
   const output = {};
-  for (let idUser = 1; idUser < 11; idUser++) {
-    let countCompleted = 0;
-    for (const todo of todosList) {
-      if (idUser === todo.userId) {
-        if (todo.completed === true) countCompleted++;
-      }
-    }
-    output[idUser] = countCompleted;
+  const data = JSON.parse(body);
+
+  for (let x = 0; x < data.length; x++) {
+    const userId = data[x].userId;
+    const complete = data[x].completed;
+
+    if (complete && !output[userId]) output[userId] = 0;
+
+    if (complete) output[userId]++;
   }
+
   console.log(output);
 });
