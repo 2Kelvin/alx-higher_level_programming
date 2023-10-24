@@ -1,5 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
+
 const aiURL = process.argv[2];
 
 request(aiURL, (err, res, body) => {
