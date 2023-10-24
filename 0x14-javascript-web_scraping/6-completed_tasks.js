@@ -19,5 +19,5 @@ request(apiURL, (err, response, body) => {
     }
     output[idUser] = countCompleted;
   }
-  console.log(output);
+  console.log(JSON.stringify(output));
 });
