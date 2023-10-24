@@ -10,15 +10,12 @@ request(starWarsURL, (err, response, body) => {
   const xters = JSON.parse(body).characters;
 
   output(xters, 0);
-  }
-  });
+});
 
-function output(pips, i) {
-  request(pips[i], (errP, responseP, bodyP) {
-		  if (errP) console.error(`error: ${errP}`);
-		  console.log(JSON.parse(bodyP).name);
-		  if (i + 1 < pips.length) output(pips, i + 1);
-		  }
-		  }
-		  });
+function output (pips, i) {
+  request(pips[i], (errP, responseP, bodyP) => {
+    if (errP) console.error(`error: ${errP}`);
+    console.log(JSON.parse(bodyP).name);
+    if (i + 1 < pips.length) output(pips, i + 1);
+  });
 }
