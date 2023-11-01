@@ -1,7 +1,7 @@
 $(function () {
   const redDiv = $('#toggle_header');
   const header = $('header');
-  redDiv.bind('click', function() {
+  redDiv.bind('click', function () {
     if (header.hasClass('green')) {
       header.removeClass('green');
       header.addClass('red');
@@ -11,4 +11,3 @@ $(function () {
     }
   });
 });
-
